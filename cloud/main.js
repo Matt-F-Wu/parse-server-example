@@ -29,18 +29,18 @@ Parse.Cloud.define("sendRequestToUser", function(request, response) {
   Parse.Push.send({
     where: pushQuery,
     data: {
-      alert : "Favourama"
-      TYPE : TYPE
-      purpose : purpose
-      latitude : latitude
-      longitude : longitude
-      note : note
-      rad : rad
-      category : category
-      reward : reward
-      address : address
-      username : username
-      rating : rating
+      alert : "Favourama",
+      TYPE : TYPE,
+      purpose : purpose,
+      latitude : latitude,
+      longitude : longitude,
+      note : note,
+      rad : rad,
+      category : category,
+      reward : reward,
+      address : address,
+      username : username,
+      rating : rating,
       userpic : userpic
     }
   }).then(function() {
