@@ -19,17 +19,33 @@ Parse.Cloud.define("sendRequestToUser", function(request, response) {
   if(request.params.hasOwnProperty('userpic')){
     userpic = request.params.userpic;
   }
+  
+  concole.log("The variables are: " + latitude + " message: " + note);
+  
   // Send the push.
   // Find devices associated with the recipient user
   var centerPoint = new Parse.GeoPoint(latitude, longitude);
   var pushQuery = new Parse.Query(Parse.Installation);
   pushQuery.withinKilometers("location", centerPoint, rad);
- 
+  
+  
   // Send the push notification to results of the query
   Parse.Push.send({
     where: pushQuery,
     data: {
       alert : "Favourama",
+      TYPE : TYPE,
+      purpose : purpose,
+      latitude : latitude,
+      longitude : longitude,
+      note : note,
+      rad : rad,
+      category : category,
+      reward : reward,
+      address : address,
+      username : username,
+      rating : rating,
+      userpic : userpic
     }
   }, { useMasterKey: true }).then(function() {
       response.success("Push was sent successfully.")
