@@ -20,7 +20,7 @@ Parse.Cloud.define("sendRequestToUser", function(request, response) {
     userpic = request.params.userpic;
   }
   
-  concole.log("The variables are: " + latitude + " message: " + note);
+  console.log("The variables are: " + latitude + " message: " + note);
   
   // Send the push.
   // Find devices associated with the recipient user
