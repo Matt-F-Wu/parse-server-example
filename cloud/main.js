@@ -30,20 +30,8 @@ Parse.Cloud.define("sendRequestToUser", function(request, response) {
     where: pushQuery,
     data: {
       alert : "Favourama",
-      TYPE : TYPE,
-      purpose : purpose,
-      latitude : latitude,
-      longitude : longitude,
-      note : note,
-      rad : rad,
-      category : category,
-      reward : reward,
-      address : address,
-      username : username,
-      rating : rating,
-      userpic : userpic
     }
-  }, {useMasterKey: true}).then(function() {
+  }, { useMasterKey: true }).then(function() {
       response.success("Push was sent successfully.")
   }, function(error) {
       response.error("Push failed to send with error: " + error.message);
