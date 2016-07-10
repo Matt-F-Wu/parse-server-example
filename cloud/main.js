@@ -96,15 +96,19 @@ Parse.Cloud.define("RateUser", function(request, response) {
   var pushQuery = new Parse.Query(Parse.User);
   pushQuery.equalTo("username", username);
   
-  pushQuery.first().then(function(user) {
+  pushQuery.first({ useMasterKey: true }).then(function(user) {
     var numRatings = user.get("NumRating");
     var ratingCurrent = user.get("Rating");
     console.log("Current Rating is: " + ratingCurrent);
     var ratingNew = ((ratingCurrent * numRatings) + ratingReceived)/(numRatings + 1);
     user.set("Rating", ratingNew);
     user.set("NumRating", numRatings + 1);
-    return user.saveAsync();
-   }).then(function(result) {
-    console.log("Updated " + result.get("Rating"));
-   });
+    return user.save(null, { useMasterKey: true });
+    }).then((userAgain) => {
+      console.log('New Rating is: ' + userAgain.get("Rating"));
+      response.success('Rating User Successful');
+    }, (error) => {
+      console.log(error);
+      response.error(error);
+    });
 });
