@@ -53,3 +53,58 @@ Parse.Cloud.define("sendRequestToUser", function(request, response) {
       response.error("Push failed to send with error: " + error.message);
   });
 });
+
+Parse.Cloud.define("sendMessageToUser", function(request, response) {
+  var TYPE = request.params.TYPE;
+  var ctype = request.params.ctype;
+  var content = request.params.content;
+  var time = request.params.time;
+  var username = request.params.username;
+  
+  console.log("Message type is: " + ctype);
+  
+  // Send the push.
+  // Find devices associated with the recipient user
+  var pushQuery = new Parse.Query(Parse.Installation);
+  pushQuery.equalTo("username", username);
+  
+  
+  // Send the push notification to results of the query
+  Parse.Push.send({
+    where: pushQuery,
+    data: {
+      alert : "Favourama",
+      TYPE : TYPE,
+      ctype : ctype,
+      username : username,
+      time : time
+    }
+  }, { useMasterKey: true }).then(function() {
+      response.success("Push was sent successfully.")
+  }, function(error) {
+      response.error("Push failed to send with error: " + error.message);
+  });
+});
+
+Parse.Cloud.define("RateUser", function(request, response) {
+  var TYPE = request.params.TYPE;
+  var ratingReceived = request.params.Rating;
+  var username = request.params.username;
+  
+  console.log("Message type is: " + ctype);
+  
+  //Update the rating entirely on server side
+  var pushQuery = new Parse.Query(Parse.User);
+  pushQuery.equalTo("username", username);
+  
+  pushQuery.first().then(function(user) {
+    var numRatings = user.get("NumRating");
+    var ratingCurrent = user.get("Rating");
+    var ratingNew = ((ratingCurrent * numRatings) + ratingReceived)/(numRatings + 1);
+    user.set("Rating", ratingNew);
+    user.set("NumRating", numRatings + 1);
+    return user.saveAsync();
+   }).then(function(result) {
+    console.log("Updated " + result.get("Rating"));
+   });
+});
