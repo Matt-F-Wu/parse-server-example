@@ -92,8 +92,6 @@ Parse.Cloud.define("RateUser", function(request, response) {
   var ratingReceived = request.params.Rating;
   var username = request.params.username;
   
-  console.log("Message type is: " + ctype);
-  
   //Update the rating entirely on server side
   var pushQuery = new Parse.Query(Parse.User);
   pushQuery.equalTo("username", username);
@@ -101,6 +99,7 @@ Parse.Cloud.define("RateUser", function(request, response) {
   pushQuery.first().then(function(user) {
     var numRatings = user.get("NumRating");
     var ratingCurrent = user.get("Rating");
+    console.log("Current Rating is: " + ratingCurrent);
     var ratingNew = ((ratingCurrent * numRatings) + ratingReceived)/(numRatings + 1);
     user.set("Rating", ratingNew);
     user.set("NumRating", numRatings + 1);
