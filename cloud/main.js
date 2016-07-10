@@ -77,6 +77,7 @@ Parse.Cloud.define("sendMessageToUser", function(request, response) {
       TYPE : TYPE,
       ctype : ctype,
       username : username,
+      content : content,
       time : time
     }
   }, { useMasterKey: true }).then(function() {
