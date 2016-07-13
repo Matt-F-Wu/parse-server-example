@@ -60,13 +60,13 @@ Parse.Cloud.define("sendMessageToUser", function(request, response) {
   var content = request.params.content;
   var time = request.params.time;
   var username = request.params.username;
-  
+  var destination = request.params.destination
   console.log("Message type is: " + ctype);
   
   // Send the push.
   // Find devices associated with the recipient user
   var pushQuery = new Parse.Query(Parse.Installation);
-  pushQuery.equalTo("username", username);
+  pushQuery.equalTo("username", destination);
   
   
   // Send the push notification to results of the query
