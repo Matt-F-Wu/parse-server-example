@@ -60,7 +60,8 @@ Parse.Cloud.define("sendMessageToUser", function(request, response) {
   var content = request.params.content;
   var time = request.params.time;
   var username = request.params.username;
-  var destination = request.params.destination
+  var destination = request.params.destination;
+  var rating = request.params.rating;
   console.log("Message type is: " + ctype);
   
   // Send the push.
@@ -78,6 +79,7 @@ Parse.Cloud.define("sendMessageToUser", function(request, response) {
       ctype : ctype,
       username : username,
       content : content,
+      rating : rating,
       time : time
     }
   }, { useMasterKey: true }).then(function() {
