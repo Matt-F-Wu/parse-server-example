@@ -36,13 +36,13 @@ var api = new ParseServer({
       apiKey: 'key-1a4f5fcaa31d61dda9042d4f4274721a',
       domain: 'sandbox80769f6a09f84f76aac45d5e93118735.mailgun.org',
       fromAddress: 'account@favourama.com',
-   }),
-  customPages: {
-        invalidLink: 'http://favourama.com/profile_management/invalid_link.html',
-        verifyEmailSuccess: 'http://favourama.com/profile_management/verify_email_success.html',
-        choosePassword: 'http://favourama.com/profile_management/choose_password.html',
-        passwordResetSuccess: 'http://favourama.com/profile_management/password_reset_success.html'
-    }
+   })  //,
+  //customPages: {
+  //    invalidLink: 'http://favourama.com/profile_management/invalid_link.html',
+  //  verifyEmailSuccess: 'http://favourama.com/profile_management/verify_email_success.html',
+  //      choosePassword: 'http://favourama.com/profile_management/choose_password.html',
+  //      passwordResetSuccess: 'http://favourama.com/profile_management/password_reset_success.html'
+  //  }
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
