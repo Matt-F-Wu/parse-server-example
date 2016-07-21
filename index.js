@@ -34,7 +34,7 @@ var api = new ParseServer({
     module: 'parse-server-simple-mailgun-adapter',
     options: {
       apiKey: 'key-1a4f5fcaa31d61dda9042d4f4274721a',
-      domain: 'sandbox80769f6a09f84f76aac45d5e93118735.mailgun.org',
+      domain: 'favourama.com',
       fromAddress: 'account@favourama.com',
     }
   },
