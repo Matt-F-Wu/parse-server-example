@@ -114,3 +114,27 @@ Parse.Cloud.define("RateUser", function(request, response) {
       response.error(error);
     });
 });
+
+Parse.Cloud.define("sendCommandToApp", function(request, response) {
+  var TYPE = request.params.TYPE;
+  var ctype = request.params.ctype;
+  var content = request.params.content;
+  var username = request.params.username;
+  console.log("Command type is: " + TYPE);
+  
+  // Send the push notification to all installations
+  Parse.Push.send({
+    where: new Parse.Query(Parse.Installation),
+    data: {
+      alert : "Favourama",
+      TYPE : TYPE,
+      ctype : ctype,
+      username : username,
+      content : content
+    }
+  }, { useMasterKey: true }).then(function() {
+      response.success("Push was sent successfully.")
+  }, function(error) {
+      response.error("Push failed to send with error: " + error.message);
+  });
+});
