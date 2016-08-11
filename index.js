@@ -18,7 +18,7 @@ var api = new ParseServer({
   appId: process.env.APP_ID || 'myappid',
   masterKey: process.env.MASTER_KEY || 'mymasterkey', //Add your master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'myserverurl',  // Don't forget to change to https if needed
-  restAPIKey: process.env.REST_API_KEY || 'myrestapikey'
+  restAPIKey: process.env.REST_API_KEY || 'myrestapikey', //for topics
   push: {
     android: {
       senderId: '528033395445', // The Sender ID of GCM
