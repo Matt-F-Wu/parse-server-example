@@ -15,9 +15,10 @@ if (!databaseUri) {
 var api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
-  appId: process.env.APP_ID || 'favouramahj',
-  masterKey: process.env.MASTER_KEY || 'haojeremy2016', //Add your master key here. Keep it secret!
-  serverURL: process.env.SERVER_URL || 'http://favourama.herokuapp.com/parse',  // Don't forget to change to https if needed
+  appId: process.env.APP_ID || 'myappid',
+  masterKey: process.env.MASTER_KEY || 'mymasterkey', //Add your master key here. Keep it secret!
+  serverURL: process.env.SERVER_URL || 'myserverurl',  // Don't forget to change to https if needed
+  restAPIKey: process.env.REST_API_KEY || 'myrestapikey'
   push: {
     android: {
       senderId: '528033395445', // The Sender ID of GCM
