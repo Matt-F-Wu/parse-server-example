@@ -108,7 +108,22 @@ Parse.Cloud.define("RateUser", function(request, response) {
     return user.save(null, { useMasterKey: true });
     }).then((userAgain) => {
       console.log('New Rating is: ' + userAgain.get("Rating"));
-      response.success('Rating User Successful');
+      var pushQuery = new Parse.Query(Parse.Installation);
+      pushQuery.equalTo("username", username);
+      
+      
+      // Send the push notification to results of the query
+      Parse.Push.send({
+        where: pushQuery,
+        data: {
+          alert : "Favourama",
+          TYPE : "RATING"
+        }
+      }, { useMasterKey: true }).then(function() {
+          response.success("Rating User Successful.")
+      }, function(error) {
+          response.error("Rating user failed: " + error.message);
+      });
     }, (error) => {
       console.log(error);
       response.error(error);
