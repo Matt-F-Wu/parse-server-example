@@ -78,6 +78,7 @@ Parse.Cloud.define("sendMessageToUser", function(request, response) {
       TYPE : TYPE,
       ctype : ctype,
       username : username,
+      destination : destination,
       content : content,
       rating : rating,
       time : time
