@@ -19,6 +19,7 @@ Parse.Cloud.define("sendRequestToUser", function(request, response) {
   if(request.params.hasOwnProperty('userpic')){
     userpic = request.params.userpic;
   }
+  var time = request.params.time;
   
   console.log("The variables are: " + latitude + " message: " + note);
   
@@ -45,7 +46,8 @@ Parse.Cloud.define("sendRequestToUser", function(request, response) {
       address : address,
       username : username,
       rating : rating,
-      userpic : userpic
+      userpic : userpic,
+      time : time
     }
   }, { useMasterKey: true }).then(function() {
       response.success("Push was sent successfully.")
